@@ -1,197 +1,168 @@
-# Chirpy
+# Hydeout
 
-🌏 English • [简体中文](docs/README_zh-CN.md)
+Hydeout updates the original [Hyde](https://github.com/poole/hyde)
+theme for [Jekyll](http://jekyllrb.com) 3.x and 4.x and adds new functionality.
 
-[![Build Status](https://github.com/cotes2020/jekyll-theme-chirpy/workflows/build/badge.svg?branch=master&event=push)](https://github.com/cotes2020/jekyll-theme-chirpy/actions?query=branch%3Amaster+event%3Apush)
-[![GitHub license](https://img.shields.io/github/license/cotes2020/jekyll-theme-chirpy.svg)](https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE)
-[![996.icu](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg)](https://996.icu)
+![Desktop](/_screenshots/1.png?raw=true)
+<img alt="Mobile home page" src="/_screenshots/2.png?raw=true" width="300px" />
+<img alt="Mobile post page" src="/_screenshots/3.png?raw=true" width="300px" />
 
-A minimal, sidebar, responsive web design Jekyll theme, focusing on text presentation, aim to help you easily record and share your knowledge. [Live Demo »](https://chirpy.cotes.info)
+### Usage
 
-[![Devices Mockup](https://raw.githubusercontent.com/cotes2020/jekyll-theme-chirpy/master/assets/img/sample/devices-mockup.png)](https://chirpy.cotes.info)
+Hydeout is available as the `jekyll-theme-hydeout` Ruby Gem.
+Add `gem "jekyll-theme-hydeout", "~> 3.4"` to your Gemfile and run
+`bundle install`.
 
-## Table of Contents
+If you're installing on Github pages, you may also have to add
+`remote_theme: fongandrew/hydeout` to your `_config.yml`. [See the Github
+instructions for more details.](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/)
 
-* [Features](#features)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Contributing](#contributing)
-* [Credits](#credits)
-* [Support](#support)
-* [License](#license)
+Hydeout uses pagination, so if you have an `index.md`, you'll need to swap
+it with an `index.html` that uses the `index` layout:
 
-## Features
-
-* Pinned Posts
-* Configurable theme mode
-* Double-level Categories
-* Last modified date for posts
-* Table of Contents
-* Automatically recommend related posts
-* Syntax highlighting
-* Mathematical expressions
-* Search
-* Atom Feeds
-* Disqus Comments
-* Google Analytics
-* GA Pageviews reporting (Advanced)
-* SEO and Performance Optimization
-
-
-## Installation
-
-[Fork **Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/fork) on GitHub, and clone the fork to local by:
-
-```terminal
-$ git clone git@github.com:<username>/jekyll-theme-chirpy -b master --single-branch
+```
+---
+layout: index
+title: Home
+---
 ```
 
-### Setting up the local envrionment
+You'll also need to add a setting to `_config.yml` telling Jekyll how many posts
+to include per page (e.g. `paginate: 5`).
 
-If you would like to run or build the project on your local machine, please follow the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of `Ruby`, `RubyGems` and `Bundler`. 
+### Keep It Simple
 
-Before running or building for the first time, please complete the installation of the Jekyll plugins. Go to the root directory of project and run:
+In keeping with the original Hyde theme, Hydeout aims to keep the overall
+design lightweight and plugin-free. JavaScript is currently limited only
+to Disqus and Google Analytics (and is only loaded if you provide configuration
+variables).
 
-```terminal
-$ bundle install
+Hydeout makes heavy use of Flexbox in its CSS. If Flexbox is not available,
+the CSS degrades into a single column layout.
+
+### Customization
+
+Hydeout replaces Hyde's class-based theming with the use
+of the following SASS variables:
+
+```scss
+$sidebar-bg-color: #202020 !default;
+$sidebar-fg-color: white !default;
+$sidebar-sticky: true !default;
+$layout-reverse: false !default;
+$link-color: #268bd2 !default;
 ```
 
-`bundle` will automatically install all the dependencies specified by `Gemfile`.
+To override these variables, create your own `assets/css/main.scss` file.
+Define your own variables, then import in Hydeout's SCSS, like so:
 
-What's more, in order to generate some extra files (*categories*, *tags* and *last modified list*), we need to use some tool scripts. If your machine is running Debian or macOS, make sure that [GNU coreutils](https://www.gnu.org/software/coreutils/) is installed. Otherwise, install by:
+```scss
+---
+# Jekyll needs front matter for SCSS files
+---
 
-* Debian
+$sidebar-bg-color: #ac4142;
+$link-color: #ac4142;
+$sidebar-sticky: false;
+@import "hydeout";
+```
 
-  ```console
-  $ sudo apt-get install coreutils
+See the [_variables](_sass/hydeout/_variables.scss) file for other variables
+you can override.
+
+You can see the full set of partials you can replace in the
+[`_includes`](_includes) folder, but there are a few worth noting:
+
+* `_includes/copyright.html` - Insert your own copyright here.
+
+* `_includes/custom-head.html` - Insert custom head tags (e.g. to load your
+  own stylesheets)
+
+* `_includes/custom-foot.html` - Insert custom elements at the end of the
+  body (e.g. for custom JS)
+
+* `_includes/custom-nav-links.html` - Additional nav links to insert at the
+  end of the list of links in the sidebar.
+
+  Pro-tip: The `nav`s in the sidebar are flexboxes. Use the `order` property
+  to order your links.
+
+* `_includes/custom-icon-links.html`- Additional icon links to insert at the
+  end of the icon links at the bottom of the sidebar. You can use the `order`
+  property to re-order.
+
+* `_includes/favicons.html` - Replace references to `favicon.ico` and
+  `favicon.png` with your own favicons references.
+
+* `_includes/font-includes.html` - The Abril Fatface font used for the site
+  title is loaded here. If you're overriding that font in the CSS, be sure
+  to also remove the font load reference here.
+
+### New Features
+
+* Hydeout adds a new tags page (accessible in the sidebar). Just create a
+  new page with the tags layout:
+
+  ```
+  ---
+  layout: tags
+  title: Tags
+  ---
   ```
 
-* macOS
+* Hydeout adds a new "category" layout for dedicated category pages.
+  Category pages are automatically added to the sidebar. All other pages
+  must have `sidebar_link: true` in their front matter to show up in
+  the sidebar. To create a category page, use the `category` layout"
 
-  ```console
-  $ brew install coreutils
+  ```
+  ---
+  layout: category
+  title: My Category
+  ---
+
+  Description of "My Category"
   ```
 
+* You can control how pages are sorted by using the `sidebar_sort_order`
+  parameter in the front matter. This works for both category and non-category
+  pages, although non-category pages will always come first. Take a look at
+  [`_includes/sidebar-nav-links.html`](./_includes/sidebar-nav-links.html) if
+  you want to customize this behavior.
 
-## Usage
+  ```
+  ---
+  layout: page
+  title: My page
+  sidebar_sort_order: 123
+  ---
 
-Running [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/) requires some extra files, which cannot be generated by Jekyll native commands, so please strictly follow the methods mentioned below to run or deploy your website.
+  Some content.
+  ```
 
-### Initialization
+* A simple redirect-to-Google search is available. Just create a page with
+  the `search` layout.
 
-Go to the root directory of the project and start initialization:
+  ```
+  ---
+  layout: search
+  title: Google Search
+  ---
+  ```
 
-```console
-$ bash tools/init.sh
-```
+* Disqus integration is ready out of the box. Just add the following to
+  your config file:
 
-> If you not intend to deploy it on GitHub Pages, append parameter option `--no-gh` at the end of the above command.
+  ```yaml
+  disqus:
+    shortname: my-disqus-shortname
+  ```
 
-What it does is:
+  If you don't want Disqus or want to use something else, override
+  `comments.html`.
 
-1. Remove some files or directories from your repository:
-    - `.travis.yml`
-    - everything under `.github/`
-    - files under `_posts/`
-    - folder `docs/` 
+* For Google Analytics support, define a `google_analytics` variable with
+  your property ID in your config file.
 
-2. Unless the option `--no-gh` was enabled, setup the GitHub action workflow by renaming `pages-deploy.yml.hook` of directory `.github/workflows/` to `pages-deploy.yml`.
-
-3. Automatically create a commit to save the changes.
-
-### Configuration
-
-Generally, go to `_config.yml` and configure the variables as needed. Some of them are typical options:
-* `url`
-* `avatar`
-* `timezone`
-* `theme_mode`
-
-
-### Run Locally
-
-You may want to preview the site contents before publishing, so just run it by:
-
-```terminal
-$ bash tools/run.sh
-```
-
-Then open a browser and visit to <http://localhost:4000>.
-
-Few days later, you may find that the file changes does not refresh in real time by using `run.sh`. Don't worry, the advanced option `-r` (or `--realtime`) will solve this problem, but it requires [**fswatch**](http://emcrisostomo.github.io/fswatch/) to be installed on your machine.
-
-### Deployment
-
-Before the deployment begins, checkout the file `_config.yml` and make sure the `url` is configured correctly. Furthermore, if you prefer the [_project site_](https://help.github.com/en/github/working-with-github-pages/about-github-pages#types-of-github-pages-sites) and don't use a custom domain, or you want to visit your website with a base url on a web server other than **GitHub Pages**, remember to change the `baseurl` to your project name that starting with a slash. For example, `/project`.
-
-Assuming you have already gone through the [initialization](#initialization), you can now choose any of the following methods to deploy your website.
-
-#### Deploy on GitHub Pages
-
-For security reasons, GitHub Pages build runs on `safe` mode, which restricts us from using tool scripts to generate additional page files. Therefore, we can use GitHub Actions to build the site, store the built site files on a new branch, and use that branch as the source of the Pages service.
-
-1. Push any commit to `origin/master` to trigger the GitHub Actions workflow. Once the build is complete, a new remote branch called `gh-pages` will appear, which is used to store the built site files.
-
-2. Unless you prefer to project sites, rename your repository to `<username>.github.io` on GitHub.
-
-3. Choose branch `gh-pages` as your GitHub Pages source.
-
-4. Visit your website at the address indicated by GitHub.
-
-#### Deploy on Other Platforms
-
-On platforms other than GitHub, e.g. GitLab, we cannot enjoy the convenience of **GitHub Actions**. However, we have a tool to make up for this shortcoming.
-
-Commit the changes of your repository first, then run the publish script:
-
-```console
-$ bash tools/publish.sh
-```
-
-> Please note that the *Recent Update* list requires the latest git-log date of posts, thus make sure the changes in `_posts` have been committed before running this command.
-
-It will automatically generates the *Latest Modified Date* and *Categories / Tags* page for the posts and submit a commit, then push to `origin/master`. Its output is similar to the following log:
-
-```terminal
-[INFO] Success to update lastmod for 4 post(s).
-[INFO] Succeed! 3 category-pages created.
-[INFO] Succeed! 4 tag-pages created.
-[INFO] Published successfully!
-```
-
-Lastly, enable the pages service according to the instructions of the platform you choose.
-
-#### Deploy on Private Server
-
-In the root of the source project, build your site by:
-
-```console
-$ bash tools/build.sh -d /path/to/site/
-```
-
-The generated site files will be placed in the root of `/path/to/site/`. Now you should upload those files to your web server, such as Nginx.
-
-### Documentation
-
-For more details and the better reading experience, please check out the [tutorials on demo site](https://chirpy.cotes.info/categories/tutorial/). In the meanwhile, a copy of the tutorial is also available on the [Wiki](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
-
-## Contributing
-
-The old saying, "Two heads are better than one." Consequently, welcome to report bugs, improve code quality or submit a new feature. For more information, see [contributing guidelines](.github/CONTRIBUTING.md).
-
-
-## Credits
-
-This theme is mainly built with [Jekyll](https://jekyllrb.com/) ecosystem, [Bootstrap](https://getbootstrap.com/), [Font Awesome](https://fontawesome.com/) and some other wonderful tools (their copyright information can be found in the relevant files).
-
-:tada: Thanks to all the volunteers who contributed to this project, their GitHub IDs are on [this list](https://github.com/cotes2020/jekyll-theme-chirpy/graphs/contributors). Also, I won't forget those guys who submitted the issues or unmerged PR because they reported bugs, shared ideas or inspired me to write more readable documentation.
-
-
-## Support
-
-If you enjoy this theme or find it helpful, please consider becoming my sponsor, I'd really appreciate it! Click the button <kbd>:heart: Sponsor</kbd> at the top of the [Home Page](https://github.com/cotes2020/jekyll-theme-chirpy) and choose a link that suits you to donate; this will encourage and help me better maintain the project.
-
-
-## License
-
-This work is published under [MIT](https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE) License.
+There's also a bunch of minor tweaks and adjustments throughout the
+theme. Hope this works for you!
