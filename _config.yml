@@ -135,7 +135,7 @@ defaults:
           label: 主页
           url: /
         -
-          label: Tags
+          label: 标签
           url: /tabs/tags/
   -
     scope:
@@ -148,7 +148,7 @@ defaults:
           label: 主页
           url: /
         -
-          label: Categories
+          label: 分类
           url: /tabs/categories/
   -
     scope:
