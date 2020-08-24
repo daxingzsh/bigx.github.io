@@ -7,7 +7,7 @@
 - 个人博客：http://www.daxingzsh.com/blog/
 - 个人项目展示：http://school.daxingzsh.com/school/school.html
 - github Resume：https://daxingzsh.github.io/
-- 个人简历主页：
+- 个人简历主页：https://daxingzsh.github.io/resume
 
 
 
