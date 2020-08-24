@@ -1,30 +1,44 @@
-## 联系方式
-
-- 电话：18511250271
-- Email：daxingzsh@163.com
-- 微信：A18511250271
-- QQ：651867791
-- 个人博客：http://www.daxingzsh.com/blog/
-- 个人项目展示：http://school.daxingzsh.com/school/school.html （呼和浩特小学学区分布图）
-- github Resume：https://daxingzsh.github.io/
-- 个人简历主页：https://daxingzsh.github.io/resume
-
-
-
 ## 个人信息
 
 - 姓名：王新新
+
 - 昵称：大新
+
 - 出生年份：1987年
+
 - 证书：信息集成项目管理师（中级），GBase 8a，阿里云（ACP）
+
 - 工作意向：Java、Js开发，大数据，数据可视化
 
+  
+
+
+## 联系方式
+
+- 电话：18511250271
+
+- Email：daxingzsh@163.com
+
+- 微信：A18511250271
+
+- QQ：651867791
+
+- 个人博客：http://www.daxingzsh.com/blog/
+
+- 个人项目展示：http://school.daxingzsh.com/school/school.html （呼和浩特小学学区分布图）
+
+- github Resume：https://daxingzsh.github.io/
+
+- 个人简历主页：https://daxingzsh.github.io/resume
+
+  
 
 
 ## 座右铭
 
 - 没有能不能做到，只有想不想做到。
 
+  
 
 
 ## 技能清单
