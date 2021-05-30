@@ -12,6 +12,8 @@
 
 - 工作意向：Java、Js开发、大数据、数据可视化
 
+- 现就职公司：亚信科技
+
   
 
 
@@ -42,7 +44,6 @@
 - WEB前段：HTML、JSP、VUE、JavaScript
 - 后端：Java、Python、Spring、Springroot、SpringCloud
 - 数据：Oracle、Mysql、Hadoop、Hive、Hbase
-=======
 - WEB前端：HTML、JSP、VUE、JavaScript
 - 后端：Java、Python、Spring、Springboot、SpringCloud
 - 数据：Oracle、Mysql、Hadoop、Hive、Hbase
@@ -164,7 +165,6 @@
 - git、svn等版本工具
 - Linux 、Tomcat、nginx、weblogic 常用命令及配置
 - oracle、mysql、hive
-- python
 - 项目管理知识，开发文档、产品原型设计
 
 
