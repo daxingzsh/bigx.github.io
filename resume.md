@@ -42,6 +42,10 @@
 - WEB前段：HTML、JSP、VUE、JavaScript
 - 后端：Java、Python、Spring、Springroot、SpringCloud
 - 数据：Oracle、Mysql、Hadoop、Hive、Hbase
+=======
+- WEB前端：HTML、JSP、VUE、JavaScript
+- 后端：Java、Python、Spring、Springboot、SpringCloud
+- 数据：Oracle、Mysql、Hadoop、Hive、Hbase
 - 数据建模/系统架构：数据仓库、SpringMVC、模块化、数据可视化
 - 移动端：小程序、HTML5 App
 
